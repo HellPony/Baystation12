@@ -1,6 +1,6 @@
 #define UPD_LOG_FILE	"update_log.out"
 #define UPD_EXE_FILE	"updater"	// Without .sh or .bat
-#define UPSTREAM_PREFIX	"upstream-"	// To find or create remotes
+#define UPSTREAM_PREFIX	""	// To find or create remotes
 
 /datum/controller/subsystem/ticker
 	var/RunExe = ""	// Command to run exe file
