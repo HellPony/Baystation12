@@ -85,7 +85,7 @@
 
 		message_staff("UPDATER: branch '[branch]' entered. Checking out that branch")
 
-		command = "git fetch"
+		command = "git fetch origin [branch]"
 		text2file(command, "[UPD_EXE_FILE][exeEND]")
 		if(shell("[RunExe] > [UPD_LOG_FILE]") != 0)
 			message_staff("UPDATER: git fetch failure. Command was '[command]'. Error message:")
