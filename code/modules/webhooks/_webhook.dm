@@ -31,6 +31,12 @@
 				message["content"] = "[mentions]: [message["content"]]"
 			else
 				message["content"] = "[mentions]"
+		// [INF] TEST SERVER
+		if(message["content"])
+			message["content"] = "ТЕСТОВЫЙ СЕРВЕР! \n [message["content"]]"
+		else
+			message["content"] = "ТЕСТОВЫЙ СЕРВЕР!"
+		// [/INF]
 		message = json_encode(message)
 		. = TRUE
 		for(var/target_url in urls)
