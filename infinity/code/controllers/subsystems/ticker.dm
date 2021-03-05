@@ -40,7 +40,7 @@
 	var/DMpref = "dm"			// DreamMaker for Unix
 	var/upd_log	// We using it to get feedback from executing commands
 	var/command = ""			// Current command for exe file
-	var/Try_Compile_Between_Rounds_If_Fails = TRUE
+	var/Try_Compile_Between_Rounds_If_Fails = FALSE
 	var/Between_Rounds_Compile_Code
 
 	switch(world.system_type)
@@ -51,7 +51,7 @@
 			Between_Rounds_Compile_Code = {"
 				killall DreamDaemon;
 				DreamMaker baystation12.dme;
-				sudo nohup nice -n -20 DreamDaemon baystation12.dmb 7777 -trusted -logself -public &
+				sudo nohup nice -n -20 DreamDaemon baystation12.dmb [world.port] -trusted -logself -public &
 			"}
 		if(MS_WINDOWS)
 			RunExe = "[UPD_EXE_FILE].bat"
@@ -59,7 +59,7 @@
 			Between_Rounds_Compile_Code = {"
 				taskkill /f /im DreamDaemon.exe
 				dm baystation12.dme
-				dreamdaemon baystation12.dmb 7777 -trusted -logself -public
+				dreamdaemon baystation12.dmb [world.port] -trusted -logself -public
 			"}
 		else
 			message_staff("UPDATER: Non supported OS '[world.system_type]'. Unable to UPD.")
