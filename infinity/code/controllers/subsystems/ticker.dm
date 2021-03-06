@@ -40,8 +40,8 @@
 	var/DMpref = "dm"			// DreamMaker for Unix
 	var/upd_log					// We using it to get feedback from executing commands
 	var/command = ""			// Current command for exe file
-	var/DMB_NAME				// If null using [initial(world.name)].dmb for compile cmd \ otherwise - [DMB_NAME].dmb
-	var/Try_Compile_Between_Rounds_If_Fails = TRUE
+	var/DMB_NAME = "baystation12"	// If null using [initial(world.name)].dmb for compile cmd \ otherwise - [DMB_NAME].dmb
+	var/Try_Compile_Between_Rounds_If_Fails = FALSE
 	var/Between_Rounds_Compile_Code
 
 	switch(world.system_type)
