@@ -147,7 +147,7 @@
 
 	// Files updated. Compile time
 	to_world(SPAN_NOTICE(FONT_LARGE("<br>Файлы обновления получены. Начало компиляции.")))
-	command = "[DMpref] -clean -max_errors 10 [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)].dme"
+	command = "[DMpref] -clean -max_errors 10 [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)]"].dme"
 	text2file(command, "[UPD_EXE_FILE][exeEND]")
 
 	if(shell("[RunExe] > [UPD_LOG_FILE]") != 0)
