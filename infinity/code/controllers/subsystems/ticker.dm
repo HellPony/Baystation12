@@ -40,7 +40,7 @@
 	var/DMpref = "dm"			// DreamMaker for Unix
 	var/upd_log					// We using it to get feedback from executing commands
 	var/command = ""			// Current command for exe file
-	var/DMB_name				// If null using [init(world.name)].dmb for compile cmd \ otherwise - [DMB_name].dmb
+	var/DMB_NAME				// If null using [initial(world.name)].dmb for compile cmd \ otherwise - [DMB_NAME].dmb
 	var/Try_Compile_Between_Rounds_If_Fails = TRUE
 	var/Between_Rounds_Compile_Code
 
@@ -51,16 +51,16 @@
 			DMpref = "DreamMaker"
 			Between_Rounds_Compile_Code = {"
 				killall DreamDaemon;
-				DreamMaker [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)]"].dme;
-				sudo nohup nice -n -20 DreamDaemon [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)]"].dmb [world.port] -trusted -logself -public &
+				DreamMaker [DMB_NAME ? "[DMB_NAME]" : "[initial(world.name)]"].dme;
+				sudo nohup nice -n -20 DreamDaemon [DMB_NAME ? "[DMB_NAME]" : "[initial(world.name)]"].dmb [world.port] -trusted -logself -public &
 			"}
 		if(MS_WINDOWS)
 			RunExe = "[UPD_EXE_FILE].bat"
 			exeEND = ".bat"
 			Between_Rounds_Compile_Code = {"
 				taskkill /f /im DreamDaemon.exe
-				dm [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)]"].dme
-				dreamdaemon [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)]"].dmb [world.port] -trusted -logself -public
+				dm [DMB_NAME ? "[DMB_NAME]" : "[initial(world.name)]"].dme
+				dreamdaemon [DMB_NAME ? "[DMB_NAME]" : "[initial(world.name)]"].dmb [world.port] -trusted -logself -public
 			"}
 		else
 			message_staff("UPDATER: Non supported OS '[world.system_type]'. Unable to UPD.")
@@ -147,7 +147,7 @@
 
 	// Files updated. Compile time
 	to_world(SPAN_NOTICE(FONT_LARGE("<br>Файлы обновления получены. Начало компиляции.")))
-	command = "[DMpref] -clean -max_errors 10 [DMB_NAME ? "[DMB_NAME]" : "[init(world.name)]"].dme"
+	command = "[DMpref] -clean -max_errors 10 [DMB_NAME ? "[DMB_NAME]" : "[initial(world.name)]"].dme"
 	text2file(command, "[UPD_EXE_FILE][exeEND]")
 
 	if(shell("[RunExe] > [UPD_LOG_FILE]") != 0)
